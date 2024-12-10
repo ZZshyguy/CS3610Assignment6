@@ -1,5 +1,5 @@
 from HDD import HDD
-from OpticalDiscReader import OpticalDiscReader
+from DiscReader import DiscReader
 from Powersupply import PowerSupply
 from RAM import RAM
 from Sensors import Sensors
@@ -13,7 +13,7 @@ class Computer:
         self.video_card = VideoCard()
         self.ram = RAM()
         self.hdd = HDD()
-        self.optical_disc_reader = OpticalDiscReader()
+        self.disc_reader = DiscReader()
 
     def begin_work(self):
         print("Starting computer...")
@@ -30,8 +30,8 @@ class Computer:
         self.ram.analyze_memory()
         self.video_card.display_data("RAM")
         self.power_supply.supply_power("disc reader")
-        self.optical_disc_reader.startup()
-        self.optical_disc_reader.check_disc_presence()
+        self.disc_reader.startup()
+        self.disc_reader.check_disc_presence()
         self.video_card.display_data("disc reader")
         self.power_supply.supply_power("hard drive")
         self.hdd.launch()
@@ -45,7 +45,7 @@ class Computer:
         self.hdd.stop_device()
         self.ram.clear_memory()
         self.ram.analyze_memory()
-        self.optical_disc_reader.return_to_original_position()
+        self.disc_reader.return_to_original_position()
         self.power_supply.stop_power("video card")
         self.power_supply.stop_power("RAM")
         self.power_supply.stop_power("disc reader")
